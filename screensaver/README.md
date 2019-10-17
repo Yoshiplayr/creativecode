@@ -9,3 +9,4 @@ In the end, I had the chaotic screensaver I wanted, with these mascots flying ar
 
 Below is the link to the final product:
 https://editor.p5js.org/Yoshiplayr/full/pSCyaTNSV
+I also uploaded the images used in the screensaver to the github folder here.
