@@ -1,165 +1,91 @@
-let bricks = [];
-let logos = [];
-let umw;
 
-function preload(){
- umw = loadImage('umwlogo.png');
   
+var img;
+ 
+//this is where the images are loaded in, I ended up finding how to do this at the following link:http://coursescript.com/notes/interactivecomputing/images/
+//where i copied the code and how to load in the images
+function preload()
+{
+  // load image
+  Ted = loadImage("Teddie.png");
+  Mona = loadImage("Morgana.png");
+  Koro = loadImage("Koro.png");
+}
+ 
+//this is for the movement of the dog and cat, lifted from the bouncing ball example in class, which is why the first one is surfer, and the second is kitten because it was a variable I could easily remember
+let surfer = {
+  x : 100,
+  y : 100,
+  speed : 3
 }
 
-function setup() {
-  noCursor();
-  noStroke();
-  createCanvas(1920, 1080);
-  wallMap = [
-    '111111100111111',
-    '111111100111111',
-    '111111000111111',
-    '111110000011111',
-    '111110000001111',
-    '111110000001111',
-    '111110000001111',
-    '111110000001111',
-    '111111000001111',
-    '111111110011111'
-  ];
+let kitten = {
+  x : 50,
+  y : 50,
+  xSpeed : 3,
+  ySpeed : 2
+}
+
+//just the creation of the canvas
+function setup() 
+{
+  // set canvas size
+  createCanvas(1920, 1080); 
+}
+ 
+function draw() 
+{
+  //setting the background and how much of a shadow there would be behind each of the images, and parameters for where the bear would teleport around
+  background(2,20,20,5);
+   if (surfer.x>width){
+      surfer.x=50
+      surfer.y=50
+
+  }
+
+  // display image (img, x, y) (this is the base code from the site I linked to earlier on how to display the images)
+  //Here is the code for the teleporting bear, what was originally code that just made him vibrate uncontrollably, with suggestion from a classmate turned into teleporting bear. I also made 3 of them so there would be more bears with more residual shadows
+  image(Ted, 5000*random()+surfer.x, 500*random()+surfer.y, 200,200);
+  image(Ted, 4000*random()+surfer.x, 200*random()+surfer.y, 200,200);
+
+  image(Ted, 5000*random()+surfer.x, 500*random()+surfer.y, 200,200);
   
+//here are the parameters for the bouncing cat, set to bounce off the walls of the 1920x1080 screen size
+ if (kitten.x>1860){
 
-
-  for (let r = 0; r < 10; r += 1) {
-    for (let c = 0; c < 15; c += 1) {
-      if (wallMap[r][c] == '1') {
-        bricks.push(new Brick(c * 128, r * 108));
-      }
-    }
+    kitten.xSpeed = -kitten.xSpeed;
   }
-
-  for (let l = 0; l < 1; l += 1) {
-    logos.push(new Logo());
+  if (kitten.y > 900){
+    kitten.ySpeed = -kitten.ySpeed;
   }
-
-}
-
-function draw() {
-  colorMode(RGB, 255);
-  background(0, 0, 0, 100);
-  
-  for (let b of bricks) {
-    b.draw();
+  if (kitten.y < 0){
+    kitten.ySpeed = -kitten.ySpeed;
   }
+  if (kitten.x<0){
 
-  for (let l of logos) {
-    l.draw();
+    kitten.xSpeed = -kitten.xSpeed;
   }
-}
+    surfer.x+=surfer.x+12;
+  surfer.y+=surfer.y+12;
 
-function Brick(x, y) {
-  this.x = x - 64;
-  this.y = y;
+  //these are for where the dogs show up, I initially had them covering the whole screen in one line, but I decided I'd rather have gaps in between
+  image(Koro, 0,kitten.y,100,100)
+  image(Koro, 200,kitten.y,100,100)
+  image(Koro, 400,kitten.y,100,100)
+  image(Koro, 600,kitten.y,100,100)
+  image(Koro, 800,kitten.y,100,100)
+  image(Koro, 1000,kitten.y,100,100)
+  image(Koro, 1200,kitten.y,100,100)
+  image(Koro, 1400,kitten.y,100,100)
+  image(Koro, 1600,kitten.y,100,100)
+  image(Koro, 1800,kitten.y,100,100)
+  image(Koro, 2000,kitten.y,100,100)
 
-  this.draw = function() {
-
-    rectMode(CORNER);
-    fill(100, 0, 140,50);
-    rect(this.x, this.y, 128, 108);
-
-  }
-}
-
-function Logo() {
-  this.x = width / 2;
-  this.y = height / 2;
-  this.w = 75;
-  this.h = 75;
-  this.speedX = random(-6, 6);
-  this.speedY = random(-6, 6);
-  this.hue = random(20, 90);
-  this.draw = function() {
+  //finally, the code that summons the cat and makes him bounce around the screen
+  image(Mona,kitten.x,kitten.y,100,150)
+  kitten.x+=kitten.xSpeed;
+  kitten.y+=kitten.ySpeed;
 
 
 
-    // bounce off the walls
-    if (this.x < this.w / 2 || this.x > width - this.w / 2) {
-      this.speedX = -this.speedX;
-      this.hue = random(20, 90);
-    }
-    if (this.y > height - this.h / 2 || this.y < this.h / 2) {
-      this.speedY = -this.speedY;
-      this.hue = random(20, 90);
-    }
-
-    for (let b = 0; b < bricks.length; b++) {
-
-      if (
-        this.x + this.speedX > bricks[b].x - this.w / 2 &&
-        this.x + this.speedX < bricks[b].x + 128 + this.w / 2 &&
-        this.y + this.speedY > bricks[b].y - this.h / 2 &&
-        this.y + this.speedY < bricks[b].y + 108 + this.h / 2
-      ) {
-
-        // the next move will be contact, so figure out which
-        // edge it crosses to get there.
-        // the move vector is this.x,this.y -> this.x + this.speedX, this.y + this.speedY
-        if (
-          // top edge first:
-          intersects(this.x, this.y, this.x + this.speedX, this.y + this.speedY,bricks[b].x - this.w / 2 - 5, bricks[b].y - this.h / 2, bricks[b].x + 128 + this.w / 2 + 5, bricks[b].y - this.h / 2)
-        ) {
-          //print("TOP EDGE BREACHED");
-          this.speedY = -this.speedY;
-          this.hue = random(20, 90);
-        } else if (
-          // right edge:
-          intersects(this.x, this.y, this.x + this.speedX, this.y + this.speedY, bricks[b].x + 128 + this.w / 2, bricks[b].y - this.h / 2 - 5, bricks[b].x + 128 + this.w / 2, bricks[b].y + 108 + this.h / 2 + 5)
-        ) {
-
-          this.speedX = -this.speedX;
-          this.hue = random(20, 90);
-        } else if (
-          // bottom edge
-          intersects(this.x, this.y, this.x + this.speedX, this.y + this.speedY,
-            bricks[b].x + 128 + this.w / 2 + 5, bricks[b].y + 108 + this.h / 2, bricks[b].x - this.w / 2 - 5, bricks[b].y + 108 + this.h / 2)
-        ) {
-          this.speedY = -this.speedY;
-          this.hue = random(20, 90);
-        } else if (
-          // left edge 
-          intersects(this.x, this.y, this.x + this.speedX, this.y + this.speedY, bricks[b].x - this.w / 2, bricks[b].y + 108 + 5, bricks[b].x - this.w / 2, bricks[b].y - this.h / 2 - 5)) {
-
-          this.speedX = -this.speedX;
-          this.hue = random(20, 90);
-        }
-
-      }
-    }
-    this.x += this.speedX;
-    this.y += this.speedY;
-    colorMode(HSB, 100);
-    fill(this.hue, 100, 70);
-    rectMode(CENTER);
-    rect(this.x, this.y, this.w, this.h);
-    imageMode(CENTER);
-    image(umw,this.x, this.y, this.w,this.h);
-
-  }
-}
-
-// Something from Stackoverflow by Dan Fox
-// https://stackoverflow.com/questions/9043805/test-if-two-lines-intersect-javascript-function
-// returns true iff the line from (a,b)->(c,d) intersects with (p,q)->(r,s)
-function intersects(a, b, c, d, p, q, r, s) {
-  var det, gamma, lambda;
-  det = (c - a) * (s - q) - (r - p) * (d - b);
-  if (det === 0) {
-    return false;
-  } else {
-    lambda = ((s - q) * (r - a) + (p - r) * (s - b)) / det;
-    gamma = ((b - d) * (r - a) + (c - a) * (s - b)) / det;
-    return (0 < lambda && lambda < 1) && (0 < gamma && gamma < 1);
-  }
-}
-
-function keyPressed(){
- if (keyCode == '32'){
-   logos.push(new Logo());
- }
 }
