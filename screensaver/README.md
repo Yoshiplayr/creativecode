@@ -10,3 +10,5 @@ In the end, I had the chaotic screensaver I wanted, with these mascots flying ar
 Below is the link to the final product:
 https://editor.p5js.org/Yoshiplayr/full/pSCyaTNSV
 I also uploaded the images used in the screensaver to the github folder here.
+
+I also quickly created a version that scales, aptly named teddiescaling.js also in the folder, though it doesn't work as well due to the one with specific parameters being built specifically for a screen of that size
