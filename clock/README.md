@@ -1,9 +1,17 @@
-# Concentric Clock
+# Pokéclock
 
-This is an abstract clock I made with p5.js. The easiest way to see it in action is to copy the contents of [the javascript file](concentric-clock.js)  into a [p5.js editor](http://editor.p5js.org) and run it.
+This clock was made in P5js. Best way to see it is using this link: 
+https://editor.p5js.org/Yoshiplayr/present/hz3q9w2WM
+Because of all the images, running the code found in the file yourself likely wouldn't work.
 
-To read the clock's time, you have to count the number of dots in each circle. The inner ring (green) is hours, the middle ring (purple) is the number of minutes past the hour, and the outer (red) ring is the number of seconds past the minute.
+To tell the time, you use the respective Pokémon's dex number, for example, Bulbasaur is one, Charmander is 4, Pikachu is 25, and so on. 
+You read the clock from left to right - Hours in the Kanto Pokédex, Minutes in the Kalos Pokédex, Seconds in the Rotom Dex.
+So, for a time example, Weedle Nidorino Pikachu is 13 hours, 33 minutes, and 25 seconds
 
-The concepts demonstrated in the code rely on some of the examples shared by Golan Levin in the instructions for his class's [clock assignment](https://github.com/golanlevin/lectures/tree/master/lecture_clock), and the look of it sort of resembles the soft bubbles of [bokeh photography](https://en.wikipedia.org/wiki/Bokeh).
+The inspiration is sort of from the Golan Levin clocks we saw in class, the book one specifically made me think of the horizontal layout in a more abstract way.
+Otherwise, my thought process was purely thinking about how I could represent numbers with symbols, and given how gaming-centric my other projects have been, Pokémon just seemed like a good fit.
+
+This time, the coding process was substantially easier now that I was more familiar with P5js. The problem I had with the last assignment was loading in the images, but now that I was able to do that adding the images was an easy, yet time consuming, process.
+The only trouble I really had was working with the if_else function, but after simply copy-pasting the example from P5js's reference page and messing around where values were placed, it all ended up working out. Making the other images disappear when the new ones appeared wasn't hard, the original
 
 I like the abstract nature of this clock, even though that abstractness makes it less useful. I figure there are so many ways now to know what time it is (as I type this, I can see the current time displayed by my computer, by the watch on my wrist, and my phone on the desk next to me) that the goal of a time-based art work isn't so much to tell us what time it is but rather to encourage us to think about time and its representation.
