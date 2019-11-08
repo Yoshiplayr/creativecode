@@ -658,7 +658,7 @@ if(minute()===1){
   }else{image(Bulb,500,5000,50,50)}
  
       if(minute()===0){
-    image(Poke,100,100,300,300);
+    image(Poke,575,225,350,250);
   }else{image(Bulb,500,5000,50,50)}
 
 
