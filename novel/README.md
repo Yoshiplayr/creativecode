@@ -1,17 +1,10 @@
-# Three Ways to Generate a Novel
-
-This project folder contains three different examples for generating a novel, as definied by [NaNoGenMo](http://nanogenmo.github.io). 
-
-## Rainy Days
-The python scripts in [my_rainy_day.py](my_rainy_day.py) and [another_rainy_day.py](another_rainy_day.py) generate novels by randomly repeating and arranging the words "drip" and "drop". The first uses punctionation to mimic the syntax of prose and the second prints the words vertically as a concrete poem about rain.
-
-## Recipes for Revolution
-This [python script](revolution_recipes.py) uses a Markov chain generator on some input text to generate novels that should sound something like Karl Marx mashed up with a recipe book. The script expects a file called "combined.txt" in the same directory that the script runs in, so in the example case, that file consists of text from _The Communist Manifesto_ and a recipe book.
-
-The script also includes some libraries useful for formatting and printing the resulting text as a PDF document, so in addition to [markovify](https://github.com/jsvine/markovify), you'll also need [pdfkit](https://pypi.org/project/pdfkit/), [wkhtmltopdf](https://wkhtmltopdf.org/), and [dominate](https://github.com/Knio/dominate/).
-
-## Tracery Bookery
-The enclosed [story.json](story.json) file is a Tracery grammar that should expand a few sentences into something like 50,000 words. The actual word count will vary based on the length and number of the core sentences.
-
-This JSON file can be dropped into [this template](https://github.com/zachwhalen/bookery).
-
+For my novel, I went with the Markovv chain method. I really liked the machine learning method, and the outputs were really good, but getting it to format correctly in the PDF wasn't working out due to the scripts I used for my source text, and I already had that side of things working with the Markovv chain method.
+For my source text, I started with the Skyrim script I used in my poem, but to make it more interesting I threw in a few other movie scripts. I used: The Bee Movie (because that's just an obvious requirement), Austin Powers, The Lord of the Rings: Return of the King, Godzilla (1998), and The Mighty Morphin Power Rangers Movie. Each of these movies has enough nonsense to make the output completely insane, yet mostly legible.
+The main issue I have with the outputs is there isn't one style; the biggest text is Skyrim, so that's where a majority of the text comes from, but the other texts are from a movie script website, so there's some random capitalization and periods don't have spaces after them half of the time, but it's still surprisingly legible.
+I would have to say the most difficult parts of this project were all the formatting issues I came across.
+Half the time when I would change something in the PDF generator, it would lead to a blank document, and reverting to a previous version of the colab notebook was more trouble than it had to be most of the time.
+A lot of the time, when I would set the range for the text generation, if it was *slightly* too high it would put half the text onto one line, so there was a lot of trial and error there to make sure it would print things correctly.
+Finally, getting a title and ending took a bit of figuring out, but once I realized I just put it under the <head> tag and figured out text formatting it all worked out pretty well.
+I'm including a link to my colab notebook here as well, because github kept telling me to "check it later" when I committed changes to the python files in this folder, hopefully those work but in case they dont:
+  https://colab.research.google.com/drive/1WAClqK4fth0qmDiAb62Zjmm-7Zmmyays
+All in all, I'm pretty pleased with my novel. It isn't the prettiest thing, but I've gotten a good number of outputs that I find really entertaining.
